@@ -94,88 +94,88 @@ JobTypes.created_by AS `JobTypes__created_by`, <br>
 JobTypes.created AS `JobTypes__created`, <br>
 JobTypes.modified AS `JobTypes__modified`, <br>
 JobTypes.deleted AS `JobTypes__deleted` <br>
-FROM jobs Jobs
-WHERE EXISTS (
-    SELECT 1
-    FROM job_categories JC
-    WHERE  JC.id = Jobs.job_category_id AND JC.name LIKE ‘%キャビンアテンダント%‘
-) 
-OR EXISTS (
-    SELECT 1
-    FROM job_types JT
-    WHERE  JT.id = Jobs.job_type_id AND JT.name LIKE ‘%キャビンアテンダント%‘
-) 
-OR EXISTS (
-    SELECT 1
-    FROM jobs J
-    WHERE  j.id = Jobs.id AND (
-        j.name LIKE ‘%キャビンアテンダント%‘
-        OR J.description LIKE ‘%キャビンアテンダント%‘
-        OR J.detail LIKE ‘%キャビンアテンダント%‘
-        OR J.business_skill LIKE ‘%キャビンアテンダント%‘
-        OR J.knowledge LIKE ‘%キャビンアテンダント%‘
-        OR J.location LIKE ‘%キャビンアテンダント%‘
-        OR J.activity LIKE ‘%キャビンアテンダント%‘
-        OR J.salary_statistic_group LIKE ‘%キャビンアテンダント%‘
-        OR J.salary_range_remarks LIKE ‘%キャビンアテンダント%‘
-        OR J.restriction LIKE ‘%キャビンアテンダント%‘
-        OR J.remarks LIKE ‘%キャビンアテンダント%‘
-    )
-)
-OR EXISTS (
-    SELECT 1
-    FROM job_personalities  JobPersonalities
-    INNER JOIN personalities Personalities
-        ON Personalities.id JobPersonalities.personality_id
-        AND Personalities.deleted IS NULL
-    WHERE JobPersonalities.job_id = Jobs.id
-) 
-OR EXISTS (
-    SELECT 1
-    FROM job_practical_skills  JobPracticalSkills
-    INNER JOIN  practical_skills PracticalSkills
-        ON PracticalSkills.id JobPracticalSkills.practical_skill_id
-        AND PracticalSkills.deleted IS NULL
-    WHERE JobPracticalSkills.job_id = Jobs.id
-) 
-OR EXISTS (
-    SELECT 1
-    FROM job_basic_abilities  JobBasicAbilities
-    INNER JOIN  basic_abilties BasicAbilities
-        ON BasicAbilities.id JobBasicAbilities.basic_ability_id
-        AND BasicAbilities.deleted IS NULL
-    WHERE JobBasicAbilities.job_id = Jobs.id
-)
-OR EXISTS (
-    SELECT 1
-    FROM job_tools  JobTools
-    INNER JOIN  affiliates Tools
-        ON Tools.type = 1 
-        AND Tools.id = JobTools.affiliate_id
-        AND Tools.deleted IS NULL
-    WHERE JobTools.job_id = Jobs.id
-)
-OR EXISTS (
-    SELECT 1
-    FROM jobs_career_paths  JobsCareerPaths
-    INNER JOIN  affiliates CareerPaths
-        ON CareerPaths.type = 3 
-        AND CareerPaths.id = JobsCareerPaths.affiliate_id
-        AND CareerPaths.deleted IS NULL
-    WHERE JobsCareerPaths.job_id = Jobs.id
-)
-OR EXISTS (
-    SELECT 1
-    FROM jobs_rec_qualifications  JobRecQualifications
-    INNER JOIN  affiliates RecQualifications
-        ON RecQualifications.type = 2 
-        AND RecQualifications.id = JobRecQualifications.affiliate_id
-        AND RecQualifications.deleted IS NULL
-    WHERE JobRecQualifications.job_id = Jobs.id
-)
-AND jobs.publish_status = 1
-AND Jobs.deleted IS NULL
-GROUP BY Jobs.id
-ORDER BY Jobs.sort_order desc, 
+FROM jobs Jobs <br>
+WHERE EXISTS (<br>
+    SELECT 1<br>
+    FROM job_categories JC<br>
+    WHERE  JC.id = Jobs.job_category_id AND JC.name LIKE ‘%キャビンアテンダント%‘<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_types JT<br>
+    WHERE  JT.id = Jobs.job_type_id AND JT.name LIKE ‘%キャビンアテンダント%‘<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM jobs J<br>
+    WHERE  j.id = Jobs.id AND (<br>
+        j.name LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.description LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.detail LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.business_skill LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.knowledge LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.location LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.activity LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.salary_statistic_group LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.salary_range_remarks LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.restriction LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.remarks LIKE ‘%キャビンアテンダント%‘<br>
+    )<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_personalities  JobPersonalities<br>
+    INNER JOIN personalities Personalities<br>
+        ON Personalities.id JobPersonalities.personality_id<br>
+        AND Personalities.deleted IS NULL<br>
+    WHERE JobPersonalities.job_id = Jobs.id<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_practical_skills  JobPracticalSkills<br>
+    INNER JOIN  practical_skills PracticalSkills<br>
+        ON PracticalSkills.id JobPracticalSkills.practical_skill_id<br>
+        AND PracticalSkills.deleted IS NULL<br>
+    WHERE JobPracticalSkills.job_id = Jobs.id<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_basic_abilities  JobBasicAbilities<br>
+    INNER JOIN  basic_abilties BasicAbilities<br>
+        ON BasicAbilities.id JobBasicAbilities.basic_ability_id<br>
+        AND BasicAbilities.deleted IS NULL<br>
+    WHERE JobBasicAbilities.job_id = Jobs.id<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_tools  JobTools<br>
+    INNER JOIN  affiliates Tools<br>
+        ON Tools.type = 1 <br>
+        AND Tools.id = JobTools.affiliate_id<br>
+        AND Tools.deleted IS NULL<br>
+    WHERE JobTools.job_id = Jobs.id<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM jobs_career_paths  JobsCareerPaths<br>
+    INNER JOIN  affiliates CareerPaths<br>
+        ON CareerPaths.type = 3 <br>
+        AND CareerPaths.id = JobsCareerPaths.affiliate_id<br>
+        AND CareerPaths.deleted IS NULL<br>
+    WHERE JobsCareerPaths.job_id = Jobs.id<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM jobs_rec_qualifications  JobRecQualifications<br>
+    INNER JOIN  affiliates RecQualifications<br>
+        ON RecQualifications.type = 2 <br>
+        AND RecQualifications.id = JobRecQualifications.affiliate_id<br>
+        AND RecQualifications.deleted IS NULL<br>
+    WHERE JobRecQualifications.job_id = Jobs.id<br>
+)<br>
+AND jobs.publish_status = 1<br>
+AND Jobs.deleted IS NULL<br>
+GROUP BY Jobs.id<br>
+ORDER BY Jobs.sort_order desc, <br>
 Jobs.id DESC LIMIT 50 OFFSET 0
 
