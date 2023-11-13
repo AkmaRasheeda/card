@@ -1,66 +1,182 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Test Program Contents
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<b>A) Programming Test</b>
 
-## About Laravel
+Using Laravel Framework v10
+- Language PHP
+- PHP v8.2.7
+- MySQL v8.0.33
+- Css: <a href="https://demo.templatemonster.com/demo/51689.html?_gl=1*1mikfyq*_ga*NDc0ODMzOTcxLjE2OTk2MjAzMTg.*_ga_FTPYEGT5LY*MTY5OTYyMDMxOC4xLjEuMTY5OTYyNDMzNi4zMi4wLjA." target="blank">Bootstrap Template</a>
+- Functional url to view assessment: /distribute (can check in routes/web.php file)
+- Total time spent: 30 minutes for backend codes, 2 hours for frontend codes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<b>B) SQL Improvement Logic Test</b>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+i). Written explanation of the logical improvement
 
-## Learning Laravel
+<table>
+    <tr>
+        <td>1. Indexing:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Ensure that the columns used in the ‘WHERE’ clause for filtering (especially those in the ‘LIKE’ conditions) are indexed. This will speed up search operations.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+For example: <br>
+CREATE INDEX idx_job_categories_name ON job_categories (name); <br>
+CREATE INDEX idx_job_types_name ON job_types (name); <br>
+CREATE INDEX idx_job_ name ON jobs (name);<br></td> 
+    </tr>
+    <tr><td>2. Use EXISTS:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Using ‘EXISTS’ instead of ‘LEFT JOIN’ can lead to better performance
 
-## Laravel Sponsors
+WHERE EXISTS ( <br>
+    SELECT 1 <br>
+    FROM job_categories jc <br>
+    WHERE  jc.id = Jobs.job_category_id AND jc.name LIKE ‘%キャビンアテンダント%‘ <br>
+)  <br>
+OR EXISTS ( <br>
+    SELECT 1 <br>
+    FROM job_types jt <br>
+    WHERE  jt.id = Jobs.job_type_id AND jt.name LIKE ‘%キャビンアテンダント%‘ <br>
+) <br>
+OR EXISTS ( <br>
+    SELECT 1 <br>
+    FROM jobs j <br>
+    WHERE  j.id = Jobs.id AND (j.name LIKE ‘%キャビンアテンダント%‘) <br>
+) <br>
+</td></tr>
+</table>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+------------------------- the SQL ------------------------- <br>
+SELECT Jobs.id AS `Jobs__id`, <br>
+Jobs.name AS `Jobs__name`, <br>
+Jobs.media_id AS `Jobs__media_id`, <br> Jobs.job_category_id AS `Jobs__job_category_id`, <br> 
+Jobs.job_type_id AS `Jobs__job_type_id`, <br>
+Jobs.description AS `Jobs__description`, <br>
+Jobs.detail AS `Jobs__detail`, <br>
+Jobs.business_skill AS `Jobs__business_skill`, <br>
+Jobs.knowledge AS `Jobs__knowledge`,<br>
+Jobs.location AS `Jobs__location`,<br>
+Jobs.activity AS `Jobs__activity`,<br>
+Jobs.academic_degree_doctor AS `Jobs__academic_degree_doctor`, <br>
+Jobs.academic_degree_master AS `Jobs__academic_degree_master`, <br>
+Jobs.academic_degree_professional AS `Jobs__academic_degree_professional`, <br>
+Jobs.academic_degree_bachelor AS `Jobs__academic_degree_bachelor`, <br>
+Jobs.salary_statistic_group AS `Jobs__salary_statistic_group`, <br>
+Jobs.salary_range_first_year AS `Jobs__salary_range_first_year`, <br>
+Jobs.salary_range_average AS `Jobs__salary_range_average`, <br>
+Jobs.salary_range_remarks AS `Jobs__salary_range_remarks`, <br>
+Jobs.restriction AS `Jobs__restriction`, <br>
+Jobs.estimated_total_workers AS `Jobs__estimated_total_workers`, <br>
+Jobs.remarks AS `Jobs__remarks`, <br>
+Jobs.url AS `Jobs__url`,<br>
+Jobs.seo_description AS `Jobs__seo_description`, <br>
+Jobs.seo_keywords AS `Jobs__seo_keywords`, <br>
+Jobs.sort_order AS `Jobs__sort_order`,<br>
+Jobs.publish_status AS `Jobs__publish_status`, <br>
+Jobs.version AS `Jobs__version`,<br>
+Jobs.created_by AS `Jobs__created_by`,<br>
+Jobs.created AS `Jobs__created`,<br>
+Jobs.modified AS `Jobs__modified`,<br>
+Jobs.deleted AS `Jobs__deleted`,<br>
+JobCategories.id AS `JobCategories__id`, <br>
+JobCategories.name AS `JobCategories__name`, <br>
+JobCategories.sort_order AS `JobCategories__sort_order`, <br>
+JobCategories.created_by AS `JobCategories__created_by`, <br>
+JobCategories.created AS `JobCategories__created`, <br>
+JobCategories.modified AS `JobCategories__modified`, <br>
+JobCategories.deleted AS `JobCategories__deleted`, <br>
+JobTypes.id AS `JobTypes__id`,<br>
+JobTypes.name AS `JobTypes__name`, <br>
+JobTypes.job_category_id AS `JobTypes__job_category_id`, <br>
+JobTypes.sort_order AS `JobTypes__sort_order`,<br>
+JobTypes.created_by AS `JobTypes__created_by`, <br>
+JobTypes.created AS `JobTypes__created`, <br>
+JobTypes.modified AS `JobTypes__modified`, <br>
+JobTypes.deleted AS `JobTypes__deleted` <br>
+FROM jobs Jobs <br>
+WHERE EXISTS (<br>
+    SELECT 1<br>
+    FROM job_categories JC<br>
+    WHERE  JC.id = Jobs.job_category_id AND JC.name LIKE ‘%キャビンアテンダント%‘<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_types JT<br>
+    WHERE  JT.id = Jobs.job_type_id AND JT.name LIKE ‘%キャビンアテンダント%‘<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM jobs J<br>
+    WHERE  j.id = Jobs.id AND (<br>
+        j.name LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.description LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.detail LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.business_skill LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.knowledge LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.location LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.activity LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.salary_statistic_group LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.salary_range_remarks LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.restriction LIKE ‘%キャビンアテンダント%‘<br>
+        OR J.remarks LIKE ‘%キャビンアテンダント%‘<br>
+    )<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_personalities  JobPersonalities<br>
+    INNER JOIN personalities Personalities<br>
+        ON Personalities.id JobPersonalities.personality_id<br>
+        AND Personalities.deleted IS NULL<br>
+    WHERE JobPersonalities.job_id = Jobs.id<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_practical_skills  JobPracticalSkills<br>
+    INNER JOIN  practical_skills PracticalSkills<br>
+        ON PracticalSkills.id JobPracticalSkills.practical_skill_id<br>
+        AND PracticalSkills.deleted IS NULL<br>
+    WHERE JobPracticalSkills.job_id = Jobs.id<br>
+) <br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_basic_abilities  JobBasicAbilities<br>
+    INNER JOIN  basic_abilties BasicAbilities<br>
+        ON BasicAbilities.id JobBasicAbilities.basic_ability_id<br>
+        AND BasicAbilities.deleted IS NULL<br>
+    WHERE JobBasicAbilities.job_id = Jobs.id<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM job_tools  JobTools<br>
+    INNER JOIN  affiliates Tools<br>
+        ON Tools.type = 1 <br>
+        AND Tools.id = JobTools.affiliate_id<br>
+        AND Tools.deleted IS NULL<br>
+    WHERE JobTools.job_id = Jobs.id<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM jobs_career_paths  JobsCareerPaths<br>
+    INNER JOIN  affiliates CareerPaths<br>
+        ON CareerPaths.type = 3 <br>
+        AND CareerPaths.id = JobsCareerPaths.affiliate_id<br>
+        AND CareerPaths.deleted IS NULL<br>
+    WHERE JobsCareerPaths.job_id = Jobs.id<br>
+)<br>
+OR EXISTS (<br>
+    SELECT 1<br>
+    FROM jobs_rec_qualifications  JobRecQualifications<br>
+    INNER JOIN  affiliates RecQualifications<br>
+        ON RecQualifications.type = 2 <br>
+        AND RecQualifications.id = JobRecQualifications.affiliate_id<br>
+        AND RecQualifications.deleted IS NULL<br>
+    WHERE JobRecQualifications.job_id = Jobs.id<br>
+)<br>
+AND jobs.publish_status = 1<br>
+AND Jobs.deleted IS NULL<br>
+GROUP BY Jobs.id<br>
+ORDER BY Jobs.sort_order desc, <br>
+Jobs.id DESC LIMIT 50 OFFSET 0
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
