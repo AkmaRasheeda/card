@@ -14,7 +14,8 @@ use App\Http\Controllers\CardController;
 |
 */
 
-Route::get('/', function () {
+Route::any('/', [CardController::class, 'distribute'])->name('distribute');
+
+Route::get('/default', function () {
     return view('default');
 });
-Route::any('/distribute', [CardController::class, 'distribute'])->name('distribute');
