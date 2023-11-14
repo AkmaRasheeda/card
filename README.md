@@ -11,31 +11,49 @@ Using Laravel Framework v10
 - Total time spent: 30 minutes for backend codes, 2 hours for frontend codes
 - <a href="https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/" target="blank">How to setup laravel project clone from github</a>
  
- ## 1. Clone GitHub repo for this project locally
+ ## 
+ <b>1. Clone GitHub repo for this project locally</b>
+ 
  git clone https://github.com/AkmaRasheeda/card.git card
 
- ## 2. cd into your project
+ ## 
+ <b>2. cd into your project</b>
+ 
  cd .../card
 
- ## 3. Checkout into specific branch
+ ## 
+ <b>3. Checkout into specific branch</b>
+ 
  git checkout master
 
- ## 4. Install laravel dependencies
+ ## 
+ <b>4. Install laravel dependencies</b>
+ 
  composer install
 
- ## 5. Install NPM dependencies
+ ##  
+ <b>5. Install NPM dependencies</b>
+ 
  npm install
 
- ## 6. Create a copy of your .env file
+ ##  
+ <b>6. Create a copy of your .env file</b>
+ 
  cp .env.example .env
 
- ## 7. Generate an app encryption key
+ ##  
+ <b>7. Generate an app encryption key</b>
+ 
  php artisan key:generate
 
- ## 8. Create a database for our application
+ ##  
+ <b>8. Create a database for our application</b>
+ 
  create 'card'
 
- ## 9. In the .env file, add database information to allow Laravel to connect to the database
+ ##  
+ <b>9. In the .env file, add database information to allow Laravel to connect to the database</b>
+ 
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
@@ -43,7 +61,9 @@ Using Laravel Framework v10
     DB_USERNAME=root
     DB_PASSWORD=
 
- ## 10. Migrate the database
+ ##  
+ <b>10. Migrate the database</b>
+ 
  php artisan migrate
  
 <hr>
