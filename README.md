@@ -9,10 +9,46 @@ Using Laravel Framework v10
 - Css: <a href="https://demo.templatemonster.com/demo/51689.html?_gl=1*1mikfyq*_ga*NDc0ODMzOTcxLjE2OTk2MjAzMTg.*_ga_FTPYEGT5LY*MTY5OTYyMDMxOC4xLjEuMTY5OTYyNDMzNi4zMi4wLjA." target="blank">Bootstrap Template</a>
 - Functional url to view default php: /default (can check in routes/web.php file)
 - Total time spent: 30 minutes for backend codes, 2 hours for frontend codes
+- <a href="https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/" target="blank">How to setup laravel project clone from github</a>
+ 
+ ## 1. Clone GitHub repo for this project locally
+ git clone https://github.com/AkmaRasheeda/card.git card
 
+ ## 2. cd into your project
+ cd .../card
 
+ ## 3. Checkout into specific branch
+ git checkout master
+
+ ## 4. Install laravel dependencies
+ composer install
+
+ ## 5. Install NPM dependencies
+ npm install
+
+ ## 6. Create a copy of your .env file
+ cp .env.example .env
+
+ ## 7. Generate an app encryption key
+ php artisan key:generate
+
+ ## 8. Create a database for our application
+ create 'card'
+
+ ## 9. In the .env file, add database information to allow Laravel to connect to the database
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=card
+    DB_USERNAME=root
+    DB_PASSWORD=
+
+ ## 10. Migrate the database
+ php artisan migrate
+ 
 <b>B) SQL Improvement Logic Test</b>
 
+<hr>
 i). Written explanation of the logical improvement
 - Total time spent: 30 minutes for trying new logical approach, 1 hour for new sql scripts
 
