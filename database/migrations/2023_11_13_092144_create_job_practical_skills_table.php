@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_categories', function (Blueprint $table) {
+        Schema::create('job_practical_skills', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->integer('sort_order')->nullable();
-            $table->integer('created_by')->nullable();
-            
+            $table->integer('job_id')->nullable();
+            $table->integer('practical_skill_id')->nullable();
             $table->softDeletes(); // This adds the 'deleted_at' column
             $table->timestamps();
         });
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_categories');
+        Schema::dropIfExists('job_practical_skills');
     }
 };

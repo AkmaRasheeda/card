@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreign('job_category_id')->references('id')->on('job_categories')->onDelete('cascade');
             $table->integer('sort_order')->nullable();
             $table->integer('created_by')->nullable();
+            
+            $table->softDeletes(); // This adds the 'deleted_at' column
             $table->timestamps();
         });
     }
