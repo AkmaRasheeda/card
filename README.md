@@ -46,9 +46,9 @@ Using Laravel Framework v10
  ## 10. Migrate the database
  php artisan migrate
  
+<hr>
 <b>B) SQL Improvement Logic Test</b>
 
-<hr>
 i). Written explanation of the logical improvement
 - Total time spent: 30 minutes for trying new logical approach, 1 hour for new sql scripts
 
